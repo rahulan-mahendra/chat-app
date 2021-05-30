@@ -1,19 +1,29 @@
 package com.company.client;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class ChatClient {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
         Client client = new Client();
         client.start();
 
-        client.sendMessage("Hello From the Client.");
-        client.sendMessage("How are you?");
-        client.sendMessage("I'm fine.");
-        client.sendMessage("Thank You.");
-        client.sendMessage("exit.");
+        //accept the user input using command line
+        String message;
+        boolean bool=true;
+        Scanner scanner = new Scanner(System.in);
 
+        while(bool) {
+
+            System.out.print("Enter message : ");
+            message = scanner.nextLine();
+            client.sendMessage(message);
+
+            if(message.equals("exit.")){
+                bool=false;
+            }
+        }
         System.out.println("Client finished execution.\n");
     }
 }
